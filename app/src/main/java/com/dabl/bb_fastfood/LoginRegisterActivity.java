@@ -30,7 +30,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         btnRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginRegisterActivity.this, HomeMenuActivity.class);
+                Intent intent = new Intent(LoginRegisterActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
