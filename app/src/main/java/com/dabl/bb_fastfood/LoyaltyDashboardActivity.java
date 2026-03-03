@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LoyaltyDashboardActivity extends AppCompatActivity {
 
-    Button btnInicio;
+    Button btnInicio, btnPerfil;
     BottomNavigationView bottomNav;
 
     @Override
@@ -23,6 +23,7 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
 
         btnInicio = findViewById(R.id.btnInicio);
         bottomNav = findViewById(R.id.bottomNav);
+        btnPerfil = findViewById(R.id.btnPerfil);
 
         bottomNav.setSelectedItemId(R.id.nav_puntos);
 
@@ -31,6 +32,14 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoyaltyDashboardActivity.this, HomeMenuActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoyaltyDashboardActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });

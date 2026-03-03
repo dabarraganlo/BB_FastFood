@@ -31,6 +31,14 @@
             android:backgroundTint="#FFFFFF"
             android:textColor="#D32F2F"/>
 
+        <Button
+            android:id="@+id/btnPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mi Perfil"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#D32F2F"/>
+
     </LinearLayout>
 
     <ScrollView
