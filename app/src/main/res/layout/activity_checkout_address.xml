@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#D32F2F"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnVolverCarrito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#D32F2F"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Direccion de entrega"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubicacion actual (GPS)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/imgMapa"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/mapa"
+            android:scaleType="centerCrop"
+            android:background="#E3F2FD"
+            android:contentDescription="Mapa de ubicacion GPS"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Servicio GPS activo - Capturando coordenadas"
+            android:textSize="12sp"
+            android:textColor="#1565C0"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirma o ajusta tu direccion"
+            android:inputType="textPostalAddress"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etReferencias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Referencias (apto, piso, color de puerta...)"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coordenadas guardadas en SQLite para historial de entregas"
+            android:textSize="12sp"
+            android:textColor="#BDBDBD"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmarDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar direccion"
+        android:backgroundTint="#D32F2F"
+        android:textColor="#FFFFFF"
+        android:layout_margin="16dp"/>
+
+</LinearLayout>
