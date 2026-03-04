@@ -16,4 +16,8 @@
         android:icon="@drawable/ic_puntos"
         android:title="Mis Puntos"/>
 
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/ic_perfil"
+        android:title="Perfil"/>
 </menu>

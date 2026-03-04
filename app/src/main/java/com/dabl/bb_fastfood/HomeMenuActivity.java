@@ -60,6 +60,9 @@ public class HomeMenuActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_puntos) {
                     startActivity(new Intent(HomeMenuActivity.this, LoyaltyDashboardActivity.class));
                     return true;
+                } else if (id == R.id.nav_perfil) {
+                    startActivity(new Intent(HomeMenuActivity.this, ProfileActivity.class));
+                    return true;
                 }
                 return false;
             }

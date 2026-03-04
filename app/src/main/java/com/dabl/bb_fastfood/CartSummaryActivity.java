@@ -13,7 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CartSummaryActivity extends AppCompatActivity {
 
-    Button btnVolverMenu, btnContinuar;
+    android.widget.ImageButton btnVolverMenu;
+    android.widget.Button btnContinuar;
     BottomNavigationView bottomNav;
 
     @Override
@@ -53,6 +54,9 @@ public class CartSummaryActivity extends AppCompatActivity {
                     return true;
                 } else if (id == R.id.nav_puntos) {
                     startActivity(new Intent(CartSummaryActivity.this, LoyaltyDashboardActivity.class));
+                    return true;
+                } else if (id == R.id.nav_perfil) {
+                    startActivity(new Intent(CartSummaryActivity.this, ProfileActivity.class));
                     return true;
                 }
                 return false;
