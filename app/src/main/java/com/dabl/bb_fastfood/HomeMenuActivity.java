@@ -16,7 +16,6 @@ public class HomeMenuActivity extends AppCompatActivity {
     Button btnHamburguesaClasica, btnHamburguesaEspecial;
     Button btnPerroSencillo, btnPerroEspecial;
     Button btnCombo1, btnCombo2;
-    Button btnCarrito;
     BottomNavigationView bottomNav;
 
     @Override
@@ -30,7 +29,6 @@ public class HomeMenuActivity extends AppCompatActivity {
         btnPerroEspecial = findViewById(R.id.btnPerroEspecial);
         btnCombo1 = findViewById(R.id.btnCombo1);
         btnCombo2 = findViewById(R.id.btnCombo2);
-        btnCarrito = findViewById(R.id.btnCarrito);
         bottomNav = findViewById(R.id.bottomNav);
 
         bottomNav.setSelectedItemId(R.id.nav_menu);
@@ -49,14 +47,6 @@ public class HomeMenuActivity extends AppCompatActivity {
         btnPerroEspecial.setOnClickListener(irADetalle);
         btnCombo1.setOnClickListener(irADetalle);
         btnCombo2.setOnClickListener(irADetalle);
-
-        btnCarrito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, CartSummaryActivity.class);
-                startActivity(intent);
-            }
-        });
 
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btnCrearCuenta, btnVolverLogin;
+    Button btnCrearCuenta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         btnCrearCuenta = findViewById(R.id.btnCrearCuenta);
-        btnVolverLogin = findViewById(R.id.btnVolverLogin);
 
         btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,11 +26,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnVolverLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }

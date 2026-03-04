@@ -15,21 +15,14 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="B&amp;B FastFood"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnCarrito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Carrito"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#D32F2F"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

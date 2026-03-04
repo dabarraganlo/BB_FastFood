@@ -77,6 +77,19 @@
             android:inputType="textPassword"
             android:layout_marginBottom="24dp"/>
 
+        <TextView
+            android:id="@+id/tvYaRegistrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Si ya tienes cuenta, inicia sesion desde la pantalla anterior"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:background="#D32F2F"
+            android:padding="12dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
         <Button
             android:id="@+id/btnCrearCuenta"
             android:layout_width="match_parent"
@@ -85,14 +98,6 @@
             android:backgroundTint="#D32F2F"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="12dp"/>
-
-        <Button
-            android:id="@+id/btnVolverLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ya tengo cuenta"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#D32F2F"/>
 
     </LinearLayout>
 
