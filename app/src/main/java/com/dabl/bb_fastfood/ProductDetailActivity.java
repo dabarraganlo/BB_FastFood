@@ -32,11 +32,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         btnCompartir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCompartir = new Intent(Intent.ACTION_SEND);
-                intentCompartir.setType("text/plain");
-                intentCompartir.putExtra(Intent.EXTRA_TEXT,
-                        "Te recomiendo la Hamburguesa Clasica de B&B FastFood. Pidela ya!");
-                startActivity(Intent.createChooser(intentCompartir, "Compartir via"));
+                // Servicio de compartir - se implementara en Fase 3
             }
         });
 
