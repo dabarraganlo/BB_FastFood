@@ -58,14 +58,6 @@
             android:orientation="vertical"
             android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="$15.000"
-            android:textSize="14sp"
-            android:textColor="#D32F2F"
-            android:layout_marginBottom="16dp"/>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

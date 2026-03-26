@@ -1,6 +1,7 @@
 package com.dabl.bb_fastfood;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +48,9 @@ public class CartSummaryActivity extends AppCompatActivity {
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Carrito.getInstance().getProductos().isEmpty()) {
+                    return;
+                }
                 Intent intent = new Intent(CartSummaryActivity.this, CheckoutAddressActivity.class);
                 startActivity(intent);
             }
@@ -77,17 +81,114 @@ public class CartSummaryActivity extends AppCompatActivity {
         layoutProductos.removeAllViews();
         Carrito carrito = Carrito.getInstance();
 
-        for (Producto p : carrito.getProductos()) {
+        for (final Producto p : carrito.getProductos()) {
+
+            LinearLayout filaProducto = new LinearLayout(this);
+            filaProducto.setOrientation(LinearLayout.HORIZONTAL);
+            filaProducto.setPadding(0, 8, 0, 8);
+
+            // Nombre y precio del producto
             TextView tvProducto = new TextView(this);
-            tvProducto.setText(p.getCantidad() + "x " + p.getNombre() +
-                    " - $" + String.format("%,d", p.getTotalPrecio()) +
+            tvProducto.setText(p.getNombre() + "\n$" +
+                    String.format("%,d", p.getTotalPrecio()) +
                     " (+" + p.getTotalPuntos() + " pts)");
-            tvProducto.setTextSize(14);
-            tvProducto.setPadding(0, 8, 0, 8);
-            tvProducto.setTextColor(getResources().getColor(android.R.color.black));
-            layoutProductos.addView(tvProducto);
+            tvProducto.setTextSize(13);
+            tvProducto.setTextColor(Color.parseColor("#212121"));
+            LinearLayout.LayoutParams paramsTv = new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            tvProducto.setLayoutParams(paramsTv);
+            filaProducto.addView(tvProducto);
+
+            // Botón menos
+            Button btnMenos = new Button(this);
+            btnMenos.setText("-");
+            btnMenos.setTextSize(16);
+            btnMenos.setTextColor(Color.WHITE);
+            btnMenos.getBackground().setTint(Color.parseColor("#D32F2F"));
+            LinearLayout.LayoutParams paramsBtnMenos = new LinearLayout.LayoutParams(80, 80);
+            paramsBtnMenos.setMargins(4, 0, 4, 0);
+            btnMenos.setLayoutParams(paramsBtnMenos);
+            btnMenos.setPadding(0, 0, 0, 0);
+            filaProducto.addView(btnMenos);
+
+            // Cantidad
+            final TextView tvCantidad = new TextView(this);
+            tvCantidad.setText(String.valueOf(p.getCantidad()));
+            tvCantidad.setTextSize(16);
+            tvCantidad.setTextColor(Color.parseColor("#212121"));
+            tvCantidad.setGravity(android.view.Gravity.CENTER);
+            LinearLayout.LayoutParams paramsCantidad = new LinearLayout.LayoutParams(60,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            tvCantidad.setLayoutParams(paramsCantidad);
+            filaProducto.addView(tvCantidad);
+
+            // Botón más
+            Button btnMas = new Button(this);
+            btnMas.setText("+");
+            btnMas.setTextSize(16);
+            btnMas.setTextColor(Color.WHITE);
+            btnMas.getBackground().setTint(Color.parseColor("#D32F2F"));
+            LinearLayout.LayoutParams paramsBtnMas = new LinearLayout.LayoutParams(80, 80);
+            paramsBtnMas.setMargins(4, 0, 4, 0);
+            btnMas.setLayoutParams(paramsBtnMas);
+            btnMas.setPadding(0, 0, 0, 0);
+            filaProducto.addView(btnMas);
+
+            // Botón eliminar
+            Button btnEliminar = new Button(this);
+            btnEliminar.setText("X");
+            btnEliminar.setTextSize(14);
+            btnEliminar.setTextColor(Color.WHITE);
+            btnEliminar.getBackground().setTint(Color.parseColor("#757575"));
+            LinearLayout.LayoutParams paramsBtnEliminar = new LinearLayout.LayoutParams(80, 80);
+            paramsBtnEliminar.setMargins(4, 0, 0, 0);
+            btnEliminar.setLayoutParams(paramsBtnEliminar);
+            btnEliminar.setPadding(0, 0, 0, 0);
+            filaProducto.addView(btnEliminar);
+
+            layoutProductos.addView(filaProducto);
+
+            // Listeners
+            btnMas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    p.setCantidad(p.getCantidad() + 1);
+                    tvCantidad.setText(String.valueOf(p.getCantidad()));
+                    tvProducto.setText(p.getNombre() + "\n$" +
+                            String.format("%,d", p.getTotalPrecio()) +
+                            " (+" + p.getTotalPuntos() + " pts)");
+                    actualizarTotales();
+                }
+            });
+
+            btnMenos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (p.getCantidad() > 1) {
+                        p.setCantidad(p.getCantidad() - 1);
+                        tvCantidad.setText(String.valueOf(p.getCantidad()));
+                        tvProducto.setText(p.getNombre() + "\n$" +
+                                String.format("%,d", p.getTotalPrecio()) +
+                                " (+" + p.getTotalPuntos() + " pts)");
+                        actualizarTotales();
+                    }
+                }
+            });
+
+            btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Carrito.getInstance().getProductos().remove(p);
+                    mostrarProductos();
+                }
+            });
         }
 
+        actualizarTotales();
+    }
+
+    private void actualizarTotales() {
+        Carrito carrito = Carrito.getInstance();
         tvTotal.setText("$" + String.format("%,d", carrito.getTotalPrecio()));
         tvTotalPuntos.setText("Puntos acumulados en este pedido: +" +
                 carrito.getTotalPuntos() + " puntos");

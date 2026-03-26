@@ -98,6 +98,15 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/tvResumenPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#424242"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTotalPagar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total a pagar: $15.000"
@@ -107,6 +116,7 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/tvPuntosDisponibles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puntos disponibles: 150 puntos"
