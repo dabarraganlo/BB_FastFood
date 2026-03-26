@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.BB_FastFood" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="editTextStyle">@style/EstiloEditText</item>
     </style>
 
     <style name="Theme.BB_FastFood" parent="Base.Theme.BB_FastFood" />
+
+    <style name="EstiloEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">#212121</item>
+        <item name="android:textColorHint">#9E9E9E</item>
+    </style>
 </resources>
