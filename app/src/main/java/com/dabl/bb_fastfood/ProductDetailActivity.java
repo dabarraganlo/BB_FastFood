@@ -81,8 +81,10 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentCompartir = new Intent(Intent.ACTION_SEND);
                 intentCompartir.setType("text/plain");
+                intentCompartir.putExtra(Intent.EXTRA_SUBJECT, "Mira este producto de B&B FastFood");
                 intentCompartir.putExtra(Intent.EXTRA_TEXT,
-                        "Te recomiendo la Hamburguesa Clasica de B&B FastFood. Pidela ya!");
+                        "Te recomiendo " + nombre + " en B&B FastFood por $" +
+                                String.format("%,d", precio) + ". Tienen los mejores precios!");
                 startActivity(Intent.createChooser(intentCompartir, "Compartir via"));
             }
         });

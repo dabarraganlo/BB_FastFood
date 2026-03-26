@@ -1,12 +1,19 @@
 package com.dabl.bb_fastfood;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -14,6 +21,10 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
     TextView tvPuntosAcumulados, tvEstadoPedido;
+
+    static final String CHANNEL_ID = "bb_fastfood_channel";
+    static final int NOTIFICACION_ID = 1;
+    static final int PERMISO_NOTIFICACION = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +37,15 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
 
         bottomNav.setSelectedItemId(R.id.nav_puntos);
 
-        // Mostrar puntos reales del pedido actual
         int puntosDelPedido = Carrito.getInstance().getTotalPuntos();
         tvPuntosAcumulados.setText(puntosDelPedido + " puntos");
         tvEstadoPedido.setText("Tu pedido esta en preparacion - +" +
                 puntosDelPedido + " puntos ganados");
 
-        // Limpiar carrito después de mostrar los puntos
         Carrito.getInstance().limpiar();
+
+        crearCanalNotificacion();
+        solicitarPermisoYNotificar(puntosDelPedido);
 
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -54,5 +66,56 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void crearCanalNotificacion() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel canal = new NotificationChannel(
+                    CHANNEL_ID,
+                    "B&B FastFood Pedidos",
+                    NotificationManager.IMPORTANCE_HIGH);
+            canal.setDescription("Notificaciones del estado de tu pedido");
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(canal);
+        }
+    }
+
+    private void solicitarPermisoYNotificar(int puntos) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        PERMISO_NOTIFICACION);
+                return;
+            }
+        }
+        enviarNotificacion(puntos);
+    }
+
+    private void enviarNotificacion(int puntos) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_puntos)
+                .setContentTitle("B&B FastFood - Pedido recibido")
+                .setContentText("Tu pedido esta en preparacion. Ganaste " + puntos + " puntos!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManager manager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.notify(NOTIFICACION_ID, builder.build());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISO_NOTIFICACION) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                enviarNotificacion(Carrito.getInstance().getTotalPuntos());
+            }
+        }
     }
 }

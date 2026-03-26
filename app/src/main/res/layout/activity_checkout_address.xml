@@ -62,6 +62,7 @@
             android:layout_marginBottom="16dp"/>
 
         <TextView
+            android:id="@+id/tvCoordenadas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Servicio GPS activo - Capturando coordenadas"
