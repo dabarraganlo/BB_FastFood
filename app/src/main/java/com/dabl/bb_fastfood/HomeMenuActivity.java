@@ -33,20 +33,47 @@ public class HomeMenuActivity extends AppCompatActivity {
 
         bottomNav.setSelectedItemId(R.id.nav_menu);
 
-        View.OnClickListener irADetalle = new View.OnClickListener() {
+        btnHamburguesaClasica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, ProductDetailActivity.class);
-                startActivity(intent);
+                irADetalle("Hamburguesa Clasica", 15000, 50, R.drawable.burguersencilla);
             }
-        };
+        });
 
-        btnHamburguesaClasica.setOnClickListener(irADetalle);
-        btnHamburguesaEspecial.setOnClickListener(irADetalle);
-        btnPerroSencillo.setOnClickListener(irADetalle);
-        btnPerroEspecial.setOnClickListener(irADetalle);
-        btnCombo1.setOnClickListener(irADetalle);
-        btnCombo2.setOnClickListener(irADetalle);
+        btnHamburguesaEspecial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irADetalle("Hamburguesa Especial", 22000, 80, R.drawable.burguerespcial);
+            }
+        });
+
+        btnPerroSencillo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irADetalle("Perro Sencillo", 8000, 30, R.drawable.perrosencillo);
+            }
+        });
+
+        btnPerroEspecial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irADetalle("Perro Especial", 14000, 60, R.drawable.perroespecial);
+            }
+        });
+
+        btnCombo1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irADetalle("Combo Hamburguesa + Bebida", 20000, 70, R.drawable.comboburguer);
+            }
+        });
+
+        btnCombo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irADetalle("Combo Perro + Papas + Bebida", 18000, 65, R.drawable.comboperro);
+            }
+        });
 
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -67,5 +94,14 @@ public class HomeMenuActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void irADetalle(String nombre, int precio, int puntos, int imagenResId) {
+        Intent intent = new Intent(HomeMenuActivity.this, ProductDetailActivity.class);
+        intent.putExtra("nombre", nombre);
+        intent.putExtra("precio", precio);
+        intent.putExtra("puntos", puntos);
+        intent.putExtra("imagenResId", imagenResId);
+        startActivity(intent);
     }
 }

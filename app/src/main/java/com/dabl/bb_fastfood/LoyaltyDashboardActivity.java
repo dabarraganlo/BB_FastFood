@@ -3,6 +3,7 @@ package com.dabl.bb_fastfood;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class LoyaltyDashboardActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
+    TextView tvPuntosAcumulados, tvEstadoPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,19 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loyalty_dashboard);
 
         bottomNav = findViewById(R.id.bottomNav);
+        tvPuntosAcumulados = findViewById(R.id.tvPuntosAcumulados);
+        tvEstadoPedido = findViewById(R.id.tvEstadoPedido);
 
         bottomNav.setSelectedItemId(R.id.nav_puntos);
+
+        // Mostrar puntos reales del pedido actual
+        int puntosDelPedido = Carrito.getInstance().getTotalPuntos();
+        tvPuntosAcumulados.setText(puntosDelPedido + " puntos");
+        tvEstadoPedido.setText("Tu pedido esta en preparacion - +" +
+                puntosDelPedido + " puntos ganados");
+
+        // Limpiar carrito después de mostrar los puntos
+        Carrito.getInstance().limpiar();
 
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

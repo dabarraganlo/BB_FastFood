@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +16,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class CartSummaryActivity extends AppCompatActivity {
 
     android.widget.ImageButton btnVolverMenu;
-    android.widget.Button btnContinuar;
+    Button btnContinuar;
     BottomNavigationView bottomNav;
+    LinearLayout layoutProductos;
+    TextView tvTotal, tvTotalPuntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +29,13 @@ public class CartSummaryActivity extends AppCompatActivity {
         btnVolverMenu = findViewById(R.id.btnVolverMenu);
         btnContinuar = findViewById(R.id.btnContinuar);
         bottomNav = findViewById(R.id.bottomNav);
+        layoutProductos = findViewById(R.id.layoutProductos);
+        tvTotal = findViewById(R.id.tvTotal);
+        tvTotalPuntos = findViewById(R.id.tvTotalPuntos);
 
         bottomNav.setSelectedItemId(R.id.nav_carrito);
+
+        mostrarProductos();
 
         btnVolverMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +71,25 @@ public class CartSummaryActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void mostrarProductos() {
+        layoutProductos.removeAllViews();
+        Carrito carrito = Carrito.getInstance();
+
+        for (Producto p : carrito.getProductos()) {
+            TextView tvProducto = new TextView(this);
+            tvProducto.setText(p.getCantidad() + "x " + p.getNombre() +
+                    " - $" + String.format("%,d", p.getTotalPrecio()) +
+                    " (+" + p.getTotalPuntos() + " pts)");
+            tvProducto.setTextSize(14);
+            tvProducto.setPadding(0, 8, 0, 8);
+            tvProducto.setTextColor(getResources().getColor(android.R.color.black));
+            layoutProductos.addView(tvProducto);
+        }
+
+        tvTotal.setText("$" + String.format("%,d", carrito.getTotalPrecio()));
+        tvTotalPuntos.setText("Puntos acumulados en este pedido: +" +
+                carrito.getTotalPuntos() + " puntos");
     }
 }
