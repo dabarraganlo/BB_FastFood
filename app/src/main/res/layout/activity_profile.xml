@@ -92,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
+                android:textColor="#212121"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="16dp"/>
 
@@ -100,6 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellido"
+                android:textColor="#212121"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="16dp"/>
 
@@ -109,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="Telefono"
+                android:textColor="#212121"
                 android:inputType="phone" />
 
             <EditText
@@ -116,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo electronico"
+                android:textColor="#212121"
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="24dp"/>
 

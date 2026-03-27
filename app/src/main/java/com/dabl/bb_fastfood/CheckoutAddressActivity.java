@@ -87,9 +87,14 @@ public class CheckoutAddressActivity extends AppCompatActivity {
     }
 
     private void cargarMapa(double lat, double lon) {
-        String url = "https://maps.google.com/maps?q=" + lat + "," + lon +
-                "&z=15&output=embed";
-        webViewMapa.loadUrl(url);
+        String html = "<!DOCTYPE html><html><body style='margin:0;padding:0;'>" +
+                "<iframe width='100%' height='100%' frameborder='0' " +
+                "src='https://www.openstreetmap.org/export/embed.html" +
+                "?bbox=" + (lon - 0.01) + "," + (lat - 0.01) + "," +
+                (lon + 0.01) + "," + (lat + 0.01) +
+                "&layer=mapnik&marker=" + lat + "," + lon + "' />" +
+                "</body></html>";
+        webViewMapa.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
     }
 
     private void solicitarUbicacion() {

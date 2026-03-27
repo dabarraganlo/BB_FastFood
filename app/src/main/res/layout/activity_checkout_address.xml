@@ -71,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirma o ajusta tu direccion"
+            android:textColor="#212121"
             android:inputType="textPostalAddress"
             android:layout_marginBottom="12dp"/>
 
@@ -79,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Referencias (apto, piso, color de puerta...)"
+            android:textColor="#212121"
             android:inputType="textMultiLine"
             android:lines="3"
             android:layout_marginBottom="16dp"/>
