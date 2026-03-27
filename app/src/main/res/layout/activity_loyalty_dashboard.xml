@@ -65,6 +65,7 @@
                         android:textColor="#212121"/>
 
                     <TextView
+                        android:id="@+id/tvEstadoPedido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tu pedido esta en preparacion"
@@ -106,6 +107,7 @@
                         android:textColor="#757575"/>
 
                     <TextView
+                        android:id="@+id/tvPuntosAcumulados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="200 puntos"

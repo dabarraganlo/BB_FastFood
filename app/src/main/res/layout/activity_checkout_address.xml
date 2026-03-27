@@ -51,17 +51,14 @@
             android:textColor="#212121"
             android:layout_marginBottom="8dp"/>
 
-        <ImageView
-            android:id="@+id/imgMapa"
+        <WebView
+            android:id="@+id/webViewMapa"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/mapa"
-            android:scaleType="centerCrop"
-            android:background="#E3F2FD"
-            android:contentDescription="Mapa de ubicacion GPS"
             android:layout_marginBottom="16dp"/>
 
         <TextView
+            android:id="@+id/tvCoordenadas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Servicio GPS activo - Capturando coordenadas"
@@ -74,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirma o ajusta tu direccion"
+            android:textColor="#212121"
             android:inputType="textPostalAddress"
             android:layout_marginBottom="12dp"/>
 
@@ -82,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Referencias (apto, piso, color de puerta...)"
+            android:textColor="#212121"
             android:inputType="textMultiLine"
             android:lines="3"
             android:layout_marginBottom="16dp"/>

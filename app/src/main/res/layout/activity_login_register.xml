@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Correo electronico"
+            android:textColor="#212121"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="16dp"/>
 
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contrasena"
+            android:textColor="#212121"
             android:inputType="textPassword"
             android:layout_marginBottom="24dp"/>
 
