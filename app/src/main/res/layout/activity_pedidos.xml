@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Encabezado rojo igual al resto de la app -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D32F2F"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnVolverPedidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_flecha_atras"
+            android:backgroundTint="#D32F2F"
+            android:contentDescription="Volver"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Mis Pedidos"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <!-- Mensaje cuando no hay pedidos -->
+    <TextView
+        android:id="@+id/tvSinPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No tienes pedidos aun.\nRealiza tu primer pedido!"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone"/>
+
+    <!-- Lista de pedidos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
+
+</LinearLayout>

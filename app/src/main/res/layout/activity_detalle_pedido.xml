@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Encabezado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D32F2F"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnVolverDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_flecha_atras"
+            android:backgroundTint="#D32F2F"
+            android:contentDescription="Volver"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Detalle del Pedido"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ID y fecha -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tvDetallePedidoId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pedido #1"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"/>
+
+                <TextView
+                    android:id="@+id/tvDetalleFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01/01/2025 12:00"
+                    android:textSize="13sp"
+                    android:textColor="#757575"/>
+
+            </LinearLayout>
+
+            <!-- Estado actual del pedido -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado del pedido:"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvDetalleEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="En preparacion"
+                android:textSize="15sp"
+                android:textColor="#388E3C"
+                android:textStyle="bold"
+                android:background="#E8F5E9"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Productos del pedido -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Productos:"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvDetalleProductos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1x Hamburguesa Clasica"
+                android:textSize="14sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Resumen economico -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resumen de pago:"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Metodo de pago:"
+                    android:textSize="14sp"
+                    android:textColor="#757575"/>
+
+                <TextView
+                    android:id="@+id/tvDetalleMetodoPago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Efectivo"
+                    android:textSize="14sp"
+                    android:textColor="#424242"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total pagado:"
+                    android:textSize="14sp"
+                    android:textColor="#757575"/>
+
+                <TextView
+                    android:id="@+id/tvDetalleTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$15.000"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#D32F2F"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Puntos ganados:"
+                    android:textSize="14sp"
+                    android:textColor="#757575"/>
+
+                <TextView
+                    android:id="@+id/tvDetallePuntos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+50 puntos"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#388E3C"/>
+
+            </LinearLayout>
+
+            <!-- Seccion editar estado -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cambiar estado del pedido:"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <RadioButton
+                    android:id="@+id/radioEnPreparacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En preparacion"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioEnCamino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En camino"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioEntregado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entregado"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioCancelado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelado"
+                    android:textColor="#212121"
+                    android:textSize="14sp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Botones de accion: Guardar cambios y Eliminar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <Button
+            android:id="@+id/btnGuardarCambios"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Guardar cambios"
+            android:backgroundTint="#388E3C"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnEliminarPedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Eliminar pedido"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>
