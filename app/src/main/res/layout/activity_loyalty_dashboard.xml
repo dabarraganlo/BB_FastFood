@@ -202,7 +202,18 @@
                 android:layout_height="wrap_content"
                 android:text="Perfil y puntos guardados en SQLite"
                 android:textSize="12sp"
-                android:textColor="#BDBDBD"/>
+                android:textColor="#BDBDBD"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnVerPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver mis pedidos"
+                android:backgroundTint="#D32F2F"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
 

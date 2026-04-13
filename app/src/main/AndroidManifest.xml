@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BB_FastFood">
         <activity
+            android:name=".PedidosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetallePedidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,10 +19,15 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class LoyaltyDashboardActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
     TextView tvPuntosAcumulados, tvEstadoPedido;
+    Button btnVerPedidos;
 
     static final String CHANNEL_ID = "bb_fastfood_channel";
     static final int NOTIFICACION_ID = 1;
@@ -34,15 +41,47 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottomNav);
         tvPuntosAcumulados = findViewById(R.id.tvPuntosAcumulados);
         tvEstadoPedido = findViewById(R.id.tvEstadoPedido);
+        btnVerPedidos = findViewById(R.id.btnVerPedidos);
 
         bottomNav.setSelectedItemId(R.id.nav_puntos);
 
-        int puntosDelPedido = Carrito.getInstance().getTotalPuntos();
+        // Recuperar datos del carrito antes de limpiarlo
+        Carrito carrito = Carrito.getInstance();
+        int puntosDelPedido = carrito.getTotalPuntos();
+        int totalPrecio = carrito.getTotalPrecio();
+
         tvPuntosAcumulados.setText(puntosDelPedido + " puntos");
         tvEstadoPedido.setText("Tu pedido esta en preparacion - +" +
                 puntosDelPedido + " puntos ganados");
 
-        Carrito.getInstance().limpiar();
+        // Obtener el metodo de pago enviado desde PaymentOptionsActivity
+        String metodoPago = getIntent().getStringExtra("metodoPago");
+        if (metodoPago == null) metodoPago = "No especificado";
+
+        // Guardar el pedido en el historial antes de limpiar el carrito
+        String fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                .format(new Date());
+        Pedido nuevoPedido = new Pedido(
+                HistorialPedidos.getInstance().getProximoId(),
+                fecha,
+                carrito.getProductos(),
+                metodoPago,
+                totalPrecio,
+                puntosDelPedido
+        );
+        HistorialPedidos.getInstance().agregarPedido(nuevoPedido);
+
+        // Limpiar el carrito despues de guardar el pedido
+        carrito.limpiar();
+
+        // Boton para navegar al historial de pedidos
+        btnVerPedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoyaltyDashboardActivity.this,
+                        PedidosActivity.class));
+            }
+        });
 
         crearCanalNotificacion();
         solicitarPermisoYNotificar(puntosDelPedido);
