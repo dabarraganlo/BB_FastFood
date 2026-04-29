@@ -24,7 +24,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
     Button btnGuardar, btnEliminar;
     ImageButton btnVolver;
 
-    int pedidoIndex;
+    int pedidoId;
     Pedido pedido;
 
     @Override
@@ -49,9 +49,9 @@ public class DetallePedidoActivity extends AppCompatActivity {
         btnEliminar = findViewById(R.id.btnEliminarPedido);
         btnVolver = findViewById(R.id.btnVolverDetalle);
 
-        // Obtener el indice del pedido enviado desde PedidosActivity
-        pedidoIndex = getIntent().getIntExtra("pedido_index", -1);
-        pedido = HistorialPedidos.getInstance().getPedido(pedidoIndex);
+        // Obtener el id del pedido enviado desde PedidosActivity
+        pedidoId = getIntent().getIntExtra("pedido_id", -1);
+        pedido = HistorialPedidos.getInstance(this).getPedidoPorId(pedidoId);
 
         if (pedido == null) {
             Toast.makeText(this, "Pedido no encontrado", Toast.LENGTH_SHORT).show();
@@ -131,6 +131,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
         }
 
         pedido.setEstado(nuevoEstado);
+        HistorialPedidos.getInstance(this).actualizarEstado(pedidoId, nuevoEstado);
         tvEstado.setText(nuevoEstado);
 
         Toast.makeText(this, "Estado actualizado: " + nuevoEstado,
@@ -146,7 +147,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
                 .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        HistorialPedidos.getInstance().eliminarPedido(pedidoIndex);
+                        HistorialPedidos.getInstance(DetallePedidoActivity.this).eliminarPedido(pedidoId);
                         Toast.makeText(DetallePedidoActivity.this,
                                 "Pedido eliminado", Toast.LENGTH_SHORT).show();
                         finish(); // Regresa a PedidosActivity

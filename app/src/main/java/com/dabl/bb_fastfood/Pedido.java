@@ -34,8 +34,9 @@ public class Pedido {
     public int getTotalPuntos() { return totalPuntos; }
     public String getEstado() { return estado; }
 
-    // Setter de estado para editar el pedido
+    // Setters
     public void setEstado(String estado) { this.estado = estado; }
+    public void setId(int id) { this.id = id; }
 
     // Retorna un resumen legible de los productos
     public String getResumenItems() {

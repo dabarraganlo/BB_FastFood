@@ -1,55 +1,43 @@
 package com.dabl.bb_fastfood;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
-// Singleton que almacena el historial de pedidos del usuario durante la sesion.
-// En la Fase 4 este singleton se complementara con persistencia SQLite.
 public class HistorialPedidos {
 
     private static HistorialPedidos instancia;
-    private ArrayList<Pedido> pedidos;
-    private int contadorId;
+    private PedidoDAO dao;
 
-    private HistorialPedidos() {
-        pedidos = new ArrayList<>();
-        contadorId = 1;
+    private HistorialPedidos(Context context) {
+        dao = new PedidoDAO(context.getApplicationContext());
     }
 
-    public static HistorialPedidos getInstance() {
+    public static HistorialPedidos getInstance(Context context) {
         if (instancia == null) {
-            instancia = new HistorialPedidos();
+            instancia = new HistorialPedidos(context);
         }
         return instancia;
     }
 
-    // Agrega un nuevo pedido y le asigna un ID automatico
     public void agregarPedido(Pedido pedido) {
-        pedidos.add(pedido);
-        contadorId++;
+        long newId = dao.insertarPedido(pedido);
+        pedido.setId((int) newId);
     }
 
-    // Retorna la lista completa de pedidos
     public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+        return dao.obtenerTodosLosPedidos();
     }
 
-    // Retorna un pedido por su posicion en la lista
-    public Pedido getPedido(int index) {
-        if (index >= 0 && index < pedidos.size()) {
-            return pedidos.get(index);
-        }
-        return null;
+    public Pedido getPedidoPorId(int id) {
+        return dao.obtenerPedidoPorId(id);
     }
 
-    // Elimina un pedido por su posicion en la lista
-    public void eliminarPedido(int index) {
-        if (index >= 0 && index < pedidos.size()) {
-            pedidos.remove(index);
-        }
+    public void eliminarPedido(int id) {
+        dao.eliminarPedido(id);
     }
 
-    // Retorna el proximo ID disponible
-    public int getProximoId() {
-        return contadorId;
+    public void actualizarEstado(int id, String estado) {
+        dao.actualizarEstado(id, estado);
     }
 }

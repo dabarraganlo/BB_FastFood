@@ -50,7 +50,7 @@ public class PedidosActivity extends AppCompatActivity {
     }
 
     private void cargarPedidos() {
-        ArrayList<Pedido> pedidos = HistorialPedidos.getInstance().getPedidos();
+        ArrayList<Pedido> pedidos = HistorialPedidos.getInstance(this).getPedidos();
 
         if (pedidos.isEmpty()) {
             tvSinPedidos.setVisibility(View.VISIBLE);
@@ -97,10 +97,10 @@ public class PedidosActivity extends AppCompatActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int index = holder.getAdapterPosition();
+                    Pedido pedidoSeleccionado = listaPedidos.get(holder.getAdapterPosition());
                     Intent intent = new Intent(PedidosActivity.this,
                             DetallePedidoActivity.class);
-                    intent.putExtra("pedido_index", index);
+                    intent.putExtra("pedido_id", pedidoSeleccionado.getId());
                     startActivity(intent);
                 }
             });

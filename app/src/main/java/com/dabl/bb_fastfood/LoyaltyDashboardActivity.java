@@ -58,21 +58,23 @@ public class LoyaltyDashboardActivity extends AppCompatActivity {
         String metodoPago = getIntent().getStringExtra("metodoPago");
         if (metodoPago == null) metodoPago = "No especificado";
 
-        // Guardar el pedido en el historial antes de limpiar el carrito
-        String fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-                .format(new Date());
-        Pedido nuevoPedido = new Pedido(
-                HistorialPedidos.getInstance().getProximoId(),
-                fecha,
-                carrito.getProductos(),
-                metodoPago,
-                totalPrecio,
-                puntosDelPedido
-        );
-        HistorialPedidos.getInstance().agregarPedido(nuevoPedido);
+        // Guardar el pedido solo si el carrito tiene productos (evita duplicados al recrear la Activity)
+        if (!carrito.getProductos().isEmpty()) {
+            String fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                    .format(new Date());
+            Pedido nuevoPedido = new Pedido(
+                    0,
+                    fecha,
+                    carrito.getProductos(),
+                    metodoPago,
+                    totalPrecio,
+                    puntosDelPedido
+            );
+            HistorialPedidos.getInstance(this).agregarPedido(nuevoPedido);
 
-        // Limpiar el carrito despues de guardar el pedido
-        carrito.limpiar();
+            // Limpiar el carrito despues de guardar el pedido
+            carrito.limpiar();
+        }
 
         // Boton para navegar al historial de pedidos
         btnVerPedidos.setOnClickListener(new View.OnClickListener() {
